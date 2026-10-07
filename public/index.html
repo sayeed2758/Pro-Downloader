@@ -1,228 +1,77 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#6254C9">
-  <meta name="description" content="Pro Downloader - clean link-based media downloader for supported services.">
-  <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/css/app.css">
-  <title>Pro Downloader</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pro Downloader | Ultimate Media Resolver</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #6254C9; }
+        body { background-color: #F9FAFB; font-family: 'Inter', sans-serif; }
+        .active-nav { color: var(--primary); }
+        .pill-shadow { box-shadow: 0 4px 14px 0 rgba(98, 84, 201, 0.39); }
+    </style>
 </head>
-<body>
-  <div id="offlineBanner" class="offline-banner hidden">You appear to be offline.</div>
+<body class="pb-20">
 
-  <header class="topbar">
-    <button class="brand-btn" data-view-target="home" aria-label="Go to Home">
-      <span class="brand-mark">PD</span>
-      <span>
-        <strong>Pro Downloader</strong>
-        <small>Made With ♥ By Shahid</small>
-      </span>
-    </button>
-    <div class="top-actions">
-      <button class="icon-btn" id="premiumTopBtn" aria-label="Premium">♛</button>
-      <button class="icon-btn" id="settingsTopBtn" aria-label="Settings">⚙</button>
-    </div>
-  </header>
-
-  <main id="appMain" class="app-main">
-    <section id="view-home" class="view active">
-      <div class="hero-card">
-        <div class="eyebrow">FAST • CLEAN • MOBILE</div>
-        <h1>Paste a video or post link</h1>
-        <p>Use a supported public URL, choose the format, then download or play it when available.</p>
-        <form id="homeResolveForm" class="url-form">
-          <div class="url-input-wrap">
-            <span class="input-icon">↗</span>
-            <input id="homeUrlInput" autocomplete="off" inputmode="url" placeholder="Search or Enter a URL" aria-label="Video or post URL">
-            <button type="button" class="ghost-input-btn" id="pasteHomeBtn" aria-label="Paste from clipboard">Paste</button>
-            <button type="button" class="ghost-input-btn" id="scanHomeBtn" aria-label="Scan QR code">QR</button>
-          </div>
-          <button class="primary-btn" type="submit">Download</button>
-        </form>
-      </div>
-
-      <div id="premiumCard" class="premium-card"></div>
-
-      <section class="section">
-        <div class="section-head"><h2>Tools</h2><button class="text-btn" data-tool="link-checker">See all</button></div>
-        <div class="tool-grid">
-          <button class="tool-card" data-tool="speed-test"><span>⚡</span><strong>Speed Test</strong><small>Real browser test</small></button>
-          <button class="tool-card" data-tool="extract-audio"><span>♫</span><strong>Extract Audio</strong><small>Supported links</small></button>
-          <button class="tool-card" data-tool="link-checker"><span>✓</span><strong>Link Checker</strong><small>Validate & inspect</small></button>
-          <button class="tool-card" data-view-target="bookmarks"><span>🔖</span><strong>Bookmarks</strong><small>Saved links</small></button>
-          <button class="tool-card" data-view-target="history"><span>◷</span><strong>History</strong><small>Recent links</small></button>
-          <button class="tool-card" data-tool="status-saver"><span>◉</span><strong>Status Saver</strong><small>Where supported</small></button>
+    <!-- Header -->
+    <header class="bg-white px-4 py-4 flex justify-between items-center sticky top-0 z-50 shadow-sm">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-[#6254C9] rounded-lg flex items-center justify-center text-white">
+                <i class="fa-solid fa-download text-sm"></i>
+            </div>
+            <h1 class="text-xl font-bold text-gray-900">Pro Downloader</h1>
         </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><h2>Recently Watched</h2><button class="text-btn" data-view-target="videos">See All</button></div>
-        <div id="recentWatched" class="horizontal-list empty-state-inline"></div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><h2>Favorite Sites</h2><button class="text-btn" id="editFavoritesBtn">Edit</button></div>
-        <div id="favoriteSites" class="favorite-sites"></div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><h2>Supported Websites</h2><button class="text-btn" id="supportedSitesBtn">Open list</button></div>
-        <div id="supportedSitesPreview" class="site-chip-wrap"></div>
-      </section>
-    </section>
-
-    <section id="view-downloaders" class="view">
-      <div class="page-head"><button class="back-btn" data-view-target="home">‹</button><div><h1>Downloaders</h1><p>Resolve a supported link.</p></div><button class="icon-btn" id="premiumDownloaderBtn">♛</button></div>
-      <form id="downloadForm" class="panel">
-        <label for="downloadUrlInput">Video or post link</label>
-        <div class="url-input-wrap">
-          <span class="input-icon">↗</span>
-          <input id="downloadUrlInput" autocomplete="off" inputmode="url" placeholder="https://..." aria-label="Downloader URL">
-          <button type="button" class="ghost-input-btn" id="pasteDownloadBtn">Paste</button>
-          <button type="button" class="ghost-input-btn" id="scanDownloadBtn">QR</button>
+        <div class="flex gap-4 items-center">
+            <button id="premiumBtn" class="text-yellow-500 text-xl"><i class="fa-solid fa-crown"></i></button>
+            <button id="settingsBtn" class="text-gray-500 text-xl"><i class="fa-solid fa-cog"></i></button>
         </div>
-        <button class="primary-btn" type="submit">Download</button>
-        <div class="muted-note">Only platforms currently enabled by Admin are shown.</div>
-      </form>
-      <section class="section">
-        <div class="section-head"><h2>Works with</h2><button class="text-btn" id="supportedSitesBtn2">Check list</button></div>
-        <div id="supportedSitesGrid" class="supported-grid"></div>
-      </section>
-      <div class="telegram-cta"><div><strong>Need support?</strong><p>Join the Telegram channel for updates and help.</p></div><button id="telegramDownloaderBtn" class="secondary-btn">Join Telegram</button></div>
-    </section>
+    </header>
 
-    <section id="view-downloads" class="view">
-      <div class="page-head"><div><h1>Downloads</h1><p>Manage your recent download tasks.</p></div><button class="icon-btn" id="clearDownloadsBtn">⌫</button></div>
-      <div class="segmented" id="downloadTabs">
-        <button class="active" data-download-tab="active">Active</button><button data-download-tab="completed">Completed</button><button data-download-tab="failed">Failed</button>
-      </div>
-      <div id="downloadsList" class="stack-list"></div>
-    </section>
+    <!-- Main Content Area -->
+    <main id="app-view" class="p-4 max-w-md mx-auto">
+        <!-- Views will be injected here (Phase 2) -->
+        <div class="flex flex-col items-center justify-center h-[60vh] text-center">
+            <div class="animate-pulse flex flex-col items-center">
+                <div class="w-16 h-16 bg-gray-200 rounded-full mb-4"></div>
+                <div class="h-4 w-48 bg-gray-200 rounded mb-2"></div>
+                <div class="h-3 w-32 bg-gray-200 rounded"></div>
+            </div>
+            <p class="mt-8 text-gray-400 font-medium">Initialising Pro Architecture...</p>
+        </div>
+    </main>
 
-    <section id="view-videos" class="view">
-      <div class="page-head"><div><h1>Videos</h1><p>Play, resume, and manage saved media entries.</p></div></div>
-      <div class="segmented" id="videoTabs"><button class="active" data-video-tab="all">All</button><button data-video-tab="recent">Recent</button><button data-video-tab="favorites">Favorites</button></div>
-      <div id="videosList" class="card-grid"></div>
-    </section>
+    <!-- Fixed Bottom Navigation (Section 8 Requirement) -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-2 py-2 flex justify-around items-center z-50">
+        <button class="nav-item flex flex-col items-center gap-1 active-nav">
+            <i class="fa-solid fa-house text-lg"></i>
+            <span class="text-[10px] font-medium">Home</span>
+        </button>
+        <button class="nav-item flex flex-col items-center gap-1 text-gray-400">
+            <i class="fa-solid fa-circle-down text-lg"></i>
+            <span class="text-[10px] font-medium">Downloader</span>
+        </button>
+        <button class="nav-item flex flex-col items-center gap-1 text-gray-400">
+            <i class="fa-solid fa-clock-rotate-left text-lg"></i>
+            <span class="text-[10px] font-medium">History</span>
+        </button>
+        <button class="nav-item flex flex-col items-center gap-1 text-gray-400">
+            <i class="fa-solid fa-play text-lg"></i>
+            <span class="text-[10px] font-medium">Videos</span>
+        </button>
+        <button class="nav-item flex flex-col items-center gap-1 text-gray-400">
+            <i class="fa-solid fa-layer-group text-lg"></i>
+            <span class="text-[10px] font-medium">Tabs</span>
+        </button>
+    </nav>
 
-    <section id="view-tabs" class="view">
-      <div class="page-head"><div><h1>Tabs</h1><p>Browser tabs stored on this device.</p></div><button class="primary-small" id="newTabBtn">+ New</button></div>
-      <div id="tabsList" class="stack-list"></div>
-    </section>
-
-    <section id="view-history" class="view">
-      <div class="page-head"><div><h1>Link History</h1><p>Your processed links.</p></div><button class="text-btn danger" id="clearHistoryBtn">Clear History</button></div>
-      <div id="historyList" class="stack-list"></div>
-    </section>
-
-    <section id="view-bookmarks" class="view">
-      <div class="page-head"><div><h1>Bookmarks</h1><p>Saved links for quick access.</p></div><button class="primary-small" id="addBookmarkBtn">+ Add</button></div>
-      <div id="bookmarksList" class="stack-list"></div>
-    </section>
-
-    <section id="view-profile" class="view">
-      <div class="page-head"><div><h1>Profile</h1><p>Your Pro Downloader account.</p></div></div>
-      <div id="profileCard" class="panel"></div>
-    </section>
-
-    <section id="view-settings" class="view">
-      <div class="page-head"><div><h1>Settings</h1><p>Customize your experience.</p></div></div>
-      <div class="settings-list">
-        <div class="setting-row"><div><strong>Theme</strong><small>Light, dark, or system.</small></div><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option><option value="system">System</option></select></div>
-        <div class="setting-row"><div><strong>Default video quality</strong><small>Preferred download quality.</small></div><select id="qualitySelect"><option value="best">Best available</option><option value="1080p">1080p</option><option value="720p">720p</option><option value="480p">480p</option></select></div>
-        <div class="setting-row"><div><strong>Prefer audio</strong><small>Prefer audio when provider supports it.</small></div><label class="switch"><input id="preferAudioToggle" type="checkbox"><span></span></label></div>
-        <div class="setting-row"><div><strong>Ask before download</strong><small>Confirm before starting a task.</small></div><label class="switch"><input id="askDownloadToggle" type="checkbox"><span></span></label></div>
-        <div class="setting-row"><div><strong>Save download history</strong><small>Keep processed links in history.</small></div><label class="switch"><input id="saveHistoryToggle" type="checkbox" checked><span></span></label></div>
-        <div class="setting-row"><div><strong>Notifications</strong><small>App announcements and status updates.</small></div><label class="switch"><input id="notificationsToggle" type="checkbox" checked><span></span></label></div>
-      </div>
-      <div class="settings-actions">
-        <button class="secondary-btn" id="clearWatchedBtn">Clear Watched</button>
-        <button class="secondary-btn" id="clearTabsBtn">Clear Tabs</button>
-        <button class="secondary-btn" id="clearCacheBtn">Clear Local Cache</button>
-        <button class="danger-btn" id="deleteAccountBtn">Delete Account</button>
-        <button class="secondary-btn" id="logoutBtn">Logout</button>
-      </div>
-      <div class="settings-footer">Made With ♥ By Shahid · <button class="link-btn" id="privacyBtn">Privacy</button> · <button class="link-btn" id="termsBtn">Terms</button></div>
-    </section>
-
-    <section id="view-premium" class="view">
-      <div class="page-head"><div><h1>Upgrade to Premium</h1><p>More convenience for supported processing.</p></div></div>
-      <div class="premium-banner"><span class="crown">♛</span><div><strong>Premium</strong><small>No application-controlled ads, higher quotas, priority where supported.</small></div></div>
-      <div id="plansGrid" class="plan-grid"></div>
-      <button class="primary-btn" id="continuePremiumBtn">Continue</button>
-      <button class="link-btn centered" id="restorePurchaseBtn">Restore Purchase</button>
-    </section>
-  </main>
-
-  <button class="telegram-fab" id="telegramFab" aria-label="Open Telegram">✈</button>
-
-  <nav class="bottom-nav" aria-label="Main navigation">
-    <button data-view-target="home" class="nav-item active"><span>⌂</span><small>Home</small></button>
-    <button data-view-target="downloaders" class="nav-item"><span>↓</span><small>Downloaders</small></button>
-    <button data-view-target="downloads" class="nav-item"><span>⇩</span><small>Downloads</small></button>
-    <button data-view-target="videos" class="nav-item"><span>▶</span><small>Videos</small></button>
-    <button data-view-target="tabs" class="nav-item"><span>□</span><small>Tabs</small></button>
-  </nav>
-
-  <div id="pasteHelperModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="pasteHelperTitle">
-    <div class="modal-card">
-      <button class="modal-close" data-close-modal="pasteHelperModal">×</button>
-      <div class="modal-icon">↗</div>
-      <h2 id="pasteHelperTitle">Copy a link, paste it here</h2>
-      <p>Instagram, Facebook, TeraBox and more — only when enabled in Supported Websites.</p>
-      <div class="url-input-wrap"><input id="helperUrlInput" placeholder="Video or post link"><button class="ghost-input-btn" id="pasteHelperBtn">Paste</button></div>
-      <button class="primary-btn" id="helperContinueBtn">Continue</button>
-      <small class="muted-note">We only request clipboard permission when you tap Paste.</small>
+    <!-- Watermark (Section 50 Requirement) -->
+    <div class="text-center py-4 text-xs text-gray-400">
+        Made With ♥ By Shahid
     </div>
-  </div>
 
-  <div id="resultModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
-    <div class="modal-card large">
-      <button class="modal-close" data-close-modal="resultModal">×</button>
-      <div id="resultContent"></div>
-    </div>
-  </div>
-
-  <div id="authModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-    <div class="modal-card">
-      <button class="modal-close" data-close-modal="authModal">×</button>
-      <h2 id="authTitle">Sign in</h2>
-      <p id="authSubtitle">Sign in to sync history, bookmarks and premium status.</p>
-      <div class="url-input-wrap" style="margin:10px 0"><input id="authEmail" type="email" autocomplete="email" placeholder="Email"></div>
-      <div class="url-input-wrap" style="margin:10px 0"><input id="authPassword" type="password" autocomplete="current-password" placeholder="Password"></div>
-      <button class="primary-btn" id="authPrimaryBtn">Sign in</button>
-      <div class="section-head" style="margin-top:12px"><button class="link-btn" id="authModeBtn">Create account</button><button class="link-btn" id="forgotPasswordBtn">Forgot password</button></div>
-      <div id="authMessage" class="muted-note"></div>
-    </div>
-  </div>
-
-  <div id="toolModal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="modal-card">
-      <button class="modal-close" data-close-modal="toolModal">×</button>
-      <div id="toolContent"></div>
-    </div>
-  </div>
-
-  <div id="qrModal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="modal-card">
-      <button class="modal-close" data-close-modal="qrModal">×</button>
-      <h2>Scan QR code</h2>
-      <div id="qrReader" class="qr-reader"></div>
-      <div class="muted-note">Allow camera access to scan a public URL QR code.</div>
-    </div>
-  </div>
-
-  <div id="toast" class="toast" role="status"></div>
-  <div id="loader" class="loader-overlay hidden"><div class="loader-card"><span class="spinner"></span><strong id="loaderText">Processing link...</strong><small>Do not close the app.</small></div></div>
-
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
-  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
-  <script src="/assets/js/config.js"></script>
-  <script src="/assets/js/app.js"></script>
 </body>
 </html>
