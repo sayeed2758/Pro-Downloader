@@ -1,1 +1,43 @@
-
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#6254C9"><title>Pro Downloader Admin</title>
+<link rel="stylesheet" href="/assets/css/admin.css">
+</head>
+<body>
+<div id="adminApp">
+<header class="admin-top"><div><strong>Pro Downloader Admin</strong><small>Secure configuration console</small></div><div class="admin-actions"><button id="refreshBtn">Refresh</button><button id="logoutBtn">Logout</button></div></header>
+<div id="authGate" class="gate"><div class="card"><h1>Admin Login</h1><p>Sign in with a Firebase account that is authorized under <code>/admins/{uid}</code>.</p><input id="emailInput" type="email" placeholder="Email"><input id="passwordInput" type="password" placeholder="Password"><button class="primary" id="loginBtn">Sign in</button><div id="authMsg" class="msg"></div></div></div>
+<div id="dashboard" class="hidden">
+<div class="layout">
+<aside class="sidebar">
+<button class="side-link active" data-section="overview">Dashboard</button>
+<button class="side-link" data-section="sites">Supported Sites</button>
+<button class="side-link" data-section="plans">Premium Plans</button>
+<button class="side-link" data-section="announcements">Announcements</button>
+<button class="side-link" data-section="settings">App Settings</button>
+<button class="side-link" data-section="legal">Legal Content</button>
+<button class="side-link" data-section="reports">Reports</button>
+</aside>
+<main class="content">
+<section id="section-overview" class="admin-section active">
+<h1>Dashboard</h1><p class="muted">Overview from the safe, non-sensitive configuration layer.</p>
+<div class="stats"><div class="stat"><span>Total Users</span><strong id="totalUsers">—</strong></div><div class="stat"><span>Premium Users</span><strong id="premiumUsers">—</strong></div><div class="stat"><span>Links Processed</span><strong id="linksProcessed">—</strong></div><div class="stat"><span>Supported Platforms</span><strong id="supportedCount">—</strong></div></div>
+<div class="notice">Do not store provider API secrets in Firebase. Keep them in backend environment variables.</div>
+</section>
+<section id="section-sites" class="admin-section"><div class="section-title"><div><h1>Supported Sites</h1><p class="muted">Only enabled platforms are advertised by the app.</p></div><button class="primary" id="addSiteBtn">+ Add Site</button></div><div id="sitesTable"></div></section>
+<section id="section-plans" class="admin-section"><div class="section-title"><div><h1>Premium Plans</h1><p class="muted">Prices are dynamic configuration, not client-trusted premium state.</p></div><button class="primary" id="addPlanBtn">+ Add Plan</button></div><div id="plansTable"></div></section>
+<section id="section-announcements" class="admin-section"><div class="section-title"><div><h1>Announcements</h1><p class="muted">Create public banners or modal messages.</p></div><button class="primary" id="addAnnouncementBtn">+ New</button></div><div id="announcementsTable"></div></section>
+<section id="section-settings" class="admin-section"><h1>App Settings</h1><p class="muted">Public-safe operational settings. Secrets do not belong here.</p><div class="form-grid"><label>App Name<input id="setAppName"></label><label>Telegram URL<input id="setTelegram"></label><label>Watermark<input id="setWatermark"></label><label>Support Email<input id="setSupport"></label><label>Latest Version<input id="setLatestVersion"></label><label>Minimum Version<input id="setMinimumVersion"></label><label>Update URL<input id="setUpdateUrl"></label><label>Premium Banner URL<input id="setBannerUrl"></label></div><label class="check"><input id="setMaintenance" type="checkbox"> Maintenance Mode</label><button class="primary" id="saveSettingsBtn">Save Settings</button></section>
+<section id="section-legal" class="admin-section"><h1>Legal Content</h1><p class="muted">Edit the public links separately in source files or deploy your legal content under your own jurisdictional review.</p><a class="button-link" href="/privacy.html" target="_blank" rel="noopener noreferrer">Open Privacy Policy</a><a class="button-link" href="/terms.html" target="_blank" rel="noopener noreferrer">Open Terms</a></section>
+<section id="section-reports" class="admin-section"><h1>Reports</h1><div id="reportsList" class="list"></div></section>
+</main></div></div>
+<div id="modal" class="modal hidden"><div class="modal-card"><button id="closeModal" class="close">×</button><div id="modalBody"></div></div></div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/admin.js"></script>
+</body></html>

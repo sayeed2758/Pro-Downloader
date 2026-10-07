@@ -1,0 +1,17 @@
+{
+  "name": "Pro Downloader",
+  "short_name": "Pro Downloader",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f7fa",
+  "theme_color": "#6254C9",
+  "description": "Clean link-based media downloader for supported services.",
+  "icons": [
+    {
+      "src": "/assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
