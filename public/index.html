@@ -1,77 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pro Downloader | Ultimate Media Resolver</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root { --primary: #6254C9; }
-        body { background-color: #F9FAFB; font-family: 'Inter', sans-serif; }
-        .active-nav { color: var(--primary); }
-        .pill-shadow { box-shadow: 0 4px 14px 0 rgba(98, 84, 201, 0.39); }
-    </style>
-</head>
-<body class="pb-20">
-
-    <!-- Header -->
-    <header class="bg-white px-4 py-4 flex justify-between items-center sticky top-0 z-50 shadow-sm">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-[#6254C9] rounded-lg flex items-center justify-center text-white">
-                <i class="fa-solid fa-download text-sm"></i>
+<!-- Main Content Area -->
+<main id="app-view" class="p-4 max-w-md mx-auto">
+    <!-- View: Home -->
+    <section id="view-home" class="view">
+        <!-- Search/URL Input -->
+        <div class="relative mt-2">
+            <input type="text" id="home-url-input" placeholder="Search or Enter a URL" 
+                class="w-full bg-white border border-gray-200 rounded-2xl py-4 px-12 shadow-sm focus:ring-2 focus:ring-[#6254C9] outline-none transition-all">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            <div class="absolute right-4 top-1/2 -translate-y-1/2 flex gap-3">
+                <button title="Scan QR"><i class="fa-solid fa-qrcode text-gray-400 hover:text-[#6254C9]"></i></button>
+                <button id="home-paste-btn" title="Paste"><i class="fa-solid fa-paste text-gray-400 hover:text-[#6254C9]"></i></button>
             </div>
-            <h1 class="text-xl font-bold text-gray-900">Pro Downloader</h1>
         </div>
-        <div class="flex gap-4 items-center">
-            <button id="premiumBtn" class="text-yellow-500 text-xl"><i class="fa-solid fa-crown"></i></button>
-            <button id="settingsBtn" class="text-gray-500 text-xl"><i class="fa-solid fa-cog"></i></button>
-        </div>
-    </header>
 
-    <!-- Main Content Area -->
-    <main id="app-view" class="p-4 max-w-md mx-auto">
-        <!-- Views will be injected here (Phase 2) -->
-        <div class="flex flex-col items-center justify-center h-[60vh] text-center">
-            <div class="animate-pulse flex flex-col items-center">
-                <div class="w-16 h-16 bg-gray-200 rounded-full mb-4"></div>
-                <div class="h-4 w-48 bg-gray-200 rounded mb-2"></div>
-                <div class="h-3 w-32 bg-gray-200 rounded"></div>
+        <!-- Premium Card -->
+        <div class="mt-6 bg-gradient-to-r from-[#6254C9] to-[#8B7EF0] rounded-2xl p-5 text-white flex justify-between items-center pill-shadow">
+            <div>
+                <h3 class="font-bold text-lg">Unlock Premium</h3>
+                <p class="text-xs opacity-90">Unlimited downloads & No Ads</p>
             </div>
-            <p class="mt-8 text-gray-400 font-medium">Initialising Pro Architecture...</p>
+            <button class="bg-white text-[#6254C9] px-4 py-2 rounded-xl text-sm font-bold">Upgrade</button>
         </div>
-    </main>
 
-    <!-- Fixed Bottom Navigation (Section 8 Requirement) -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-2 py-2 flex justify-around items-center z-50">
-        <button class="nav-item flex flex-col items-center gap-1 active-nav">
-            <i class="fa-solid fa-house text-lg"></i>
-            <span class="text-[10px] font-medium">Home</span>
-        </button>
-        <button class="nav-item flex flex-col items-center gap-1 text-gray-400">
-            <i class="fa-solid fa-circle-down text-lg"></i>
-            <span class="text-[10px] font-medium">Downloader</span>
-        </button>
-        <button class="nav-item flex flex-col items-center gap-1 text-gray-400">
-            <i class="fa-solid fa-clock-rotate-left text-lg"></i>
-            <span class="text-[10px] font-medium">History</span>
-        </button>
-        <button class="nav-item flex flex-col items-center gap-1 text-gray-400">
-            <i class="fa-solid fa-play text-lg"></i>
-            <span class="text-[10px] font-medium">Videos</span>
-        </button>
-        <button class="nav-item flex flex-col items-center gap-1 text-gray-400">
-            <i class="fa-solid fa-layer-group text-lg"></i>
-            <span class="text-[10px] font-medium">Tabs</span>
-        </button>
-    </nav>
+        <!-- Tools Grid (Section 24 Requirement) -->
+        <div class="mt-8">
+            <h2 class="text-sm font-bold text-gray-800 mb-4 px-1 uppercase tracking-wider">Useful Tools</h2>
+            <div class="grid grid-cols-4 gap-4">
+                <div class="tool-item flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-[#6254C9]"><i class="fa-solid fa-gauge-high"></i></div>
+                    <span class="text-[10px] font-medium text-gray-600">Speed Test</span>
+                </div>
+                <div class="tool-item flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-500"><i class="fa-solid fa-file-audio"></i></div>
+                    <span class="text-[10px] font-medium text-gray-600">Audio</span>
+                </div>
+                <div class="tool-item flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-500"><i class="fa-solid fa-link"></i></div>
+                    <span class="text-[10px] font-medium text-gray-600">Check Link</span>
+                </div>
+                <div class="tool-item flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-500"><i class="fa-solid fa-bookmark"></i></div>
+                    <span class="text-[10px] font-medium text-gray-600">Bookmarks</span>
+                </div>
+            </div>
+        </div>
 
-    <!-- Watermark (Section 50 Requirement) -->
-    <div class="text-center py-4 text-xs text-gray-400">
-        Made With ♥ By Shahid
-    </div>
+        <!-- Recent Downloads -->
+        <div class="mt-8">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-sm font-bold text-gray-800 uppercase tracking-wider">Recently Watched</h2>
+                <button class="text-[#6254C9] text-xs font-bold">View All</button>
+            </div>
+            <div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+                <!-- Sample Card -->
+                <div class="min-w-[140px] bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-20 bg-gray-200 relative">
+                        <div class="absolute inset-0 flex items-center justify-center"><i class="fa-solid fa-play text-white opacity-50"></i></div>
+                        <div class="absolute bottom-1 right-1 bg-black/60 text-white text-[8px] px-1 rounded">03:45</div>
+                    </div>
+                    <div class="p-2">
+                        <p class="text-[10px] font-bold text-gray-800 truncate">Example Media Title</p>
+                        <p class="text-[8px] text-gray-400">Instagram • 2MB</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</body>
-</html>
+    <!-- View: Downloader (Section 10 Requirement) -->
+    <section id="view-downloader" class="view hidden">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">Paste Link</h2>
+        <p class="text-sm text-gray-400 mb-6">Enter the link of the media you want to download.</p>
+        
+        <div class="flex flex-col gap-4">
+            <input type="text" id="downloader-url-input" placeholder="https://..." 
+                class="w-full bg-white border border-gray-200 rounded-2xl py-4 px-6 shadow-sm focus:ring-2 focus:ring-[#6254C9] outline-none">
+            
+            <button id="resolve-btn" class="w-full bg-[#6254C9] text-white py-4 rounded-2xl font-bold text-lg pill-shadow active:scale-95 transition-transform">
+                Download Media
+            </button>
+        </div>
+
+        <!-- Supported Platforms Grid (Section 2/40 Requirement) -->
+        <div class="mt-10">
+            <h3 class="text-xs font-bold text-gray-400 uppercase mb-4">Supported Sites</h3>
+            <div id="supported-sites-container" class="grid grid-cols-3 gap-3">
+                <!-- Dynamically loaded from JS/Firebase -->
+            </div>
+        </div>
+    </section>
+
+    <!-- View: Result Screen (Section 16 Requirement) -->
+    <section id="view-result" class="view hidden">
+        <div class="bg-white rounded-3xl p-4 shadow-sm border border-gray-50">
+            <div id="result-thumbnail" class="w-full aspect-video bg-gray-100 rounded-2xl mb-4 overflow-hidden relative">
+                <img src="" alt="Thumbnail" class="w-full h-full object-cover">
+            </div>
+            <h2 id="result-title" class="font-bold text-gray-900 mb-1 leading-tight">Video Title Goes Here</h2>
+            <p id="result-meta" class="text-xs text-gray-400 mb-6 uppercase tracking-tighter font-bold">Platform • Author • 00:00</p>
+
+            <div class="space-y-3" id="format-list">
+                <!-- Format cards like 1080p, 720p, MP3 will be injected here -->
+            </div>
+        </div>
+    </section>
+</main>
