@@ -2,89 +2,36 @@
   "rules": {
     ".read": false,
     ".write": false,
-
-    "supportedSites": {
-      ".read": true,
-      "$siteId": {
-        ".write": "auth != null && root.child('admins').child(auth.uid).exists()"
-      }
-    },
-
-    "premiumPlans": {
-      ".read": true,
-      "$planId": {
-        ".write": "auth != null && root.child('admins').child(auth.uid).exists()"
-      }
-    },
-
-    "announcements": {
-      ".read": true,
-      "$announcementId": {
-        ".write": "auth != null && root.child('admins').child(auth.uid).exists()"
-      }
-    },
-
-    "settings": {
-      "public": {
-        ".read": true,
-        ".write": "auth != null && root.child('admins').child(auth.uid).exists()"
-      },
-      "private": {
-        ".read": "auth != null && root.child('admins').child(auth.uid).exists()",
-        ".write": "auth != null && root.child('admins').child(auth.uid).exists()"
-      }
-    },
-
+    
     "users": {
       "$uid": {
-        ".read": "auth != null && auth.uid === $uid",
-        ".write": "auth != null && auth.uid === $uid",
-        "premium": {
-          ".write": "auth != null && root.child('admins').child(auth.uid).exists()"
-        }
+        ".read": "$uid === auth.uid || root.child('admins').hasChild(auth.uid)",
+        ".write": "$uid === auth.uid"
       }
     },
-
+    
+    "supportedSites": {
+      ".read": true,
+      ".write": "root.child('admins').hasChild(auth.uid)"
+    },
+    
+    "admins": {
+      ".read": "auth != null",
+      "$uid": {
+        ".read": "$uid === auth.uid"
+      }
+    },
+    
     "downloadHistory": {
       "$uid": {
-        ".read": "auth != null && auth.uid === $uid",
-        ".write": "auth != null && auth.uid === $uid"
+        ".read": "$uid === auth.uid || root.child('admins').hasChild(auth.uid)",
+        ".write": "$uid === auth.uid"
       }
     },
-
-    "bookmarks": {
-      "$uid": {
-        ".read": "auth != null && auth.uid === $uid",
-        ".write": "auth != null && auth.uid === $uid"
-      }
-    },
-
-    "favoriteSites": {
-      "$uid": {
-        ".read": "auth != null && auth.uid === $uid",
-        ".write": "auth != null && auth.uid === $uid"
-      }
-    },
-
-    "watched": {
-      "$uid": {
-        ".read": "auth != null && auth.uid === $uid",
-        ".write": "auth != null && auth.uid === $uid"
-      }
-    },
-
-    "reports": {
-      "$reportId": {
-        ".read": "auth != null && root.child('admins').child(auth.uid).exists()",
-        ".write": "auth != null"
-      }
-    },
-
-    "admins": {
-      "$uid": {
-        ".read": "auth != null && root.child('admins').child(auth.uid).exists()",
-        ".write": false
-      }
+    
+    "settings": {
+      ".read": true,
+      ".write": "root.child('admins').hasChild(auth.uid)"
     }
   }
 }
